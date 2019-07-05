@@ -1,18 +1,9 @@
-const moment = require("moment");
 const SteamUser = require("steam-user");
 const SteamTopt = require("steam-totp");
 const fs = require("fs");
 
 const file = fs.readFileSync("./config.json");
 const config = JSON.parse(file);
-
-function log(message) {
-  moment.locale("se");
-  let log = `[${moment().format("L LTS").green}] ${message.grey}`;
-  console.log(log);
-  fs.appendFileSync("log.txt", log + "\n");
-}
-
 const client = new SteamUser();
 
 const loginOptions = {
@@ -24,11 +15,12 @@ const loginOptions = {
 client.logOn(loginOptions);
 
 client.on("loggedOn", () => {
+  console.log(
+    `[+] Logged in as ${config.accountName}:${"*".repeat(
+      config.password.length
+    )} (https://steamcommunity.com/id/${client.vanityURL})`
+  );
+  console.log(`[+] Starting to idle ${config.games.length} games`);
   client.setPersona(SteamUser.EPersonaState.Online);
-
-  let games = config.games;
-
-  games.forEach(g => {
-    client.gamesPlayed(g, true);
-  });
+  client.gamesPlayed(config.games, true);
 });

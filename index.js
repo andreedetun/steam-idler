@@ -22,5 +22,8 @@ client.on("loggedOn", () => {
   );
   console.log(`[+] Starting to idle ${config.games.length} games`);
   client.setPersona(SteamUser.EPersonaState.Online);
-  client.gamesPlayed(config.games, true);
+
+  setTimeout(() => {
+    client.gamesPlayed(config.games, true);
+  }, 3500);
 });

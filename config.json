@@ -1,6 +1,9 @@
 {
   "accountName": "",
   "password": "",
-  "sharedSecret": "",
+  "twoFactorCode": "",
+  "silent": false,
+  "autResponse": true,
+  "responseMessage": "I'm currently AFK and idling games!",
   "games": [730, 10, 440]
 }

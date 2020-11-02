@@ -52,13 +52,13 @@ client.on("loggedOn", () => {
 });
 
 client.on("friendMessage", (steamid, message) => {
-  if (config.autResponse === true && config.responseMessage !== "") {
+  if (config.autResponse && config.responseMessage !== "") {
     client.chatMessage(steamid, config.responseMessage);
   }
 });
 
 client.on("lobbyInvite", (steamid, lobbyID) => {
-  if (config.autResponse === true && config.responseMessage !== "") {
+  if (config.autResponse && config.responseMessage !== "") {
     client.chatMessage(steamid, config.responseMessage);
   }
 });

@@ -32,7 +32,7 @@ client.on("loggedOn", () => {
   console.log(`[+] Starting to idle ${config.games.length} games`);
 
   // If "silent" in config is turned on we want to idle the games with the persona state offline
-  if (config.silent === false) {
+  if (!config.silent) {
     client.setPersona(SteamUser.EPersonaState.Online);
   }
 
